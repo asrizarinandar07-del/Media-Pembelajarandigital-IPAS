@@ -2,5 +2,7 @@
   "name": "MPI IPAS Kelas VI - Kearifan Lokal & Persatuan Bangsa",
   "description": "Media Pembelajaran Digital Interaktif Mapel IPAS Kelas VI Bab 4 Kearifan Lokal Warisan Leluhur untuk Persatuan Bangsa - UPT SPF SD Inpres 105285 Tandam Hilir I",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

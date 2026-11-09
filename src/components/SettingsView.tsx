@@ -25,15 +25,38 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   const [formData, setFormData] = useState<AppSettings>({ ...settings });
   const [savedAlert, setSavedAlert] = useState<boolean>(false);
 
+  // Keep formData in sync if settings changes
+  React.useEffect(() => {
+    setFormData({ ...settings });
+  }, [settings]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.kkm < 0 || formData.kkm > 100) {
+    const kkmNum = Number(formData.kkm);
+    if (isNaN(kkmNum) || kkmNum < 0 || kkmNum > 100) {
       alert('Batas KKM harus berada di rentang 0 s.d. 100.');
       return;
     }
-    onSaveSettings(formData);
+
+    const updatedSettings: AppSettings = {
+      ...formData,
+      kkm: kkmNum
+    };
+
+    // 1. Save directly to localStorage for persistent state across refreshes
+    try {
+      localStorage.setItem('mpi_ipas_settings_v1', JSON.stringify(updatedSettings));
+    } catch (err) {
+      console.error('Failed writing settings to localStorage', err);
+    }
+
+    // 2. Propagate to parent state (App.tsx) so all views (Rapor, Header, Rekap) update immediately
+    onSaveSettings(updatedSettings);
+
+    // 3. Show green banner and alert notification
     setSavedAlert(true);
-    setTimeout(() => setSavedAlert(false), 3000);
+    alert('Pengaturan identitas dan KKM berhasil disimpan!');
+    setTimeout(() => setSavedAlert(false), 5000);
   };
 
   const handleResetConfirm = () => {
@@ -70,9 +93,9 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {savedAlert && (
-        <div className="p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-emerald-800 text-xs font-bold flex items-center gap-2 animate-fadeIn">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-          <span>Pengaturan dan profil berhasil disimpan secara persisten! Dokumen rapor akan diperbarui seketika.</span>
+        <div className="p-4 bg-emerald-100/90 border-2 border-emerald-500 rounded-2xl text-emerald-900 text-sm font-extrabold flex items-center gap-3 shadow-md animate-fadeIn">
+          <CheckCircle2 className="w-6 h-6 text-emerald-700 flex-shrink-0" />
+          <span>Pengaturan identitas dan KKM berhasil disimpan!</span>
         </div>
       )}
 
