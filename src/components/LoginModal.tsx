@@ -88,7 +88,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20 transition-all duration-700 scale-100"
         style={{
-          backgroundImage: "url('/assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg')",
+          backgroundImage: "url('./assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg')",
         }}
       />
       {/* Subtle backdrop overlay to keep poster details visible while ensuring text readability */}
@@ -103,7 +103,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
           <div 
             className="absolute inset-0 bg-cover bg-top bg-no-repeat opacity-95 transition-transform duration-700 hover:scale-105"
             style={{
-              backgroundImage: "url('/assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg')",
+              backgroundImage: "url('./assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg')",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
@@ -354,7 +354,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
         >
           <div className="relative max-w-lg max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-2">
             <img 
-              src="/assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg" 
+              src="./assets/aistudio/Poster_BHINEKA_TUNGGAL_IKA_7641d045.jpg" 
               alt="Poster Bhinneka Tunggal Ika Maju Terus Indonesiaku" 
               className="w-full h-auto max-h-[82vh] object-contain rounded-xl"
             />
